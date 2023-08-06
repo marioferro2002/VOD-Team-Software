@@ -1,11 +1,5 @@
-mod session_creator;
-
-use std::env;
+mod client_type;
 use std::io::{self, Write};
-use std::net::{TcpListener, TcpStream};
-use std::thread;
-use std::thread::sleep;
-use std::time::Duration;
 use chrono::{Local, Timelike};
 
 
@@ -20,10 +14,10 @@ fn main() {
 
     match input.trim() {
         "1" => {
-            session_creator::create_session();
+            client_type::session_creator::create_session();
         }
         "2" => {
-            join_session();
+            client_type::session_join::join();
         }
         _ => {
             println!("Invalid choice");
