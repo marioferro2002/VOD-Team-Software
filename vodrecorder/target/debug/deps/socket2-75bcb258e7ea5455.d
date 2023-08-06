@@ -1,0 +1,11 @@
+C:\Users\mario\IdeaProjects\VOD-Team-Software\vodrecorder\target\debug\deps\socket2-75bcb258e7ea5455.rmeta: C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\lib.rs C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockaddr.rs C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\socket.rs C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockref.rs C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sys\windows.rs
+
+C:\Users\mario\IdeaProjects\VOD-Team-Software\vodrecorder\target\debug\deps\libsocket2-75bcb258e7ea5455.rlib: C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\lib.rs C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockaddr.rs C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\socket.rs C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockref.rs C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sys\windows.rs
+
+C:\Users\mario\IdeaProjects\VOD-Team-Software\vodrecorder\target\debug\deps\socket2-75bcb258e7ea5455.d: C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\lib.rs C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockaddr.rs C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\socket.rs C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockref.rs C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sys\windows.rs
+
+C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\lib.rs:
+C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockaddr.rs:
+C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\socket.rs:
+C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sockref.rs:
+C:\Users\mario\.cargo\registry\src\index.crates.io-6f17d22bba15001f\socket2-0.5.3\src\sys\windows.rs:
