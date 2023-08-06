@@ -8,7 +8,6 @@ pub(crate) fn join() {
     session_key = session_key.trim().to_string(); // Remove newline characters
 
     let server_address = "127.0.0.1:8080"; // Replace with the server's IP address and port
-
     let join_data = format!("JOIN:{}", session_key);
 
     let mut stream = TcpStream::connect(server_address).expect("Failed to connect to server");
