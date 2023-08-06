@@ -4,7 +4,7 @@ use std::thread;
 use std::time::Duration;
 
 pub(crate) fn main() {
-    let listener = TcpListener::bind("127.0.0.1:8082").expect("Failed to bind");
+    let listener = TcpListener::bind("0.0.0.0:8082").expect("Failed to bind");
 
     println!("Listening on port 8082...");
 

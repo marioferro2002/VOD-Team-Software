@@ -1,16 +1,14 @@
 use std::io::{self, Read, Write};
 use std::net::TcpStream;
+use std::thread;
+use std::time::Duration;
 
-pub(crate) fn join() {
-    println!("Enter the session key:");
-    let mut session_key = String::new();
-    io::stdin().read_line(&mut session_key).expect("Failed to read input");
-    session_key = session_key.trim().to_string(); // Remove newline characters
+pub(crate) fn join(ip: &str,port: &str ) {
 
-    let server_address = "127.0.0.1:8080"; // Replace with the server's IP address and port
-    let join_data = format!("JOIN:{}", session_key);
-
+    let server_address = "127.0.0.1:8082";
+    let join_data = "hello";
     let mut stream = TcpStream::connect(server_address).expect("Failed to connect to server");
+    thread::sleep(Duration::from_secs(2));
     stream
         .write_all(join_data.as_bytes())
         .expect("Failed to send data");
@@ -20,13 +18,5 @@ pub(crate) fn join() {
         .read_to_string(&mut response)
         .expect("Failed to read response");
 
-    let response_parts = response.trim().split(':').collect::<Vec<_>>();
-    if response_parts.len() == 3 && response_parts[0] == "SESSION_RESPONSE" {
-        let address = response_parts[1];
-        let port = response_parts[2];
-
-        println!("Joined session. Address: {}, Port: {}", address, port);
-    } else {
-        println!("Invalid session key or response format.");
-    }
+    println!("{}", response);
 }

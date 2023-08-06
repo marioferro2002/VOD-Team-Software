@@ -36,7 +36,6 @@ pub(crate) fn create_session() {
     }
 
     let server_address = "127.0.0.1:8080"; // Replace with actual server IP
-
     let create_data = format!("CREATE:{}:{}:{}", session_key, local_ip, port);
 
     println!("Sending: {}", create_data);

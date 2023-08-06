@@ -1,5 +1,7 @@
 use std::io::{self, Read, Write};
 use std::net::TcpStream;
+use crate::join_session;
+
 mod join_creator;
 
 
@@ -28,6 +30,8 @@ pub(crate) fn join() {
     if response_parts.len() == 4 && response_parts[0] == "SESSION_RESPONSE" {
         let address = response_parts[2];
         let port = response_parts[3];
+
+        join_creator::join(address, port);
 
 
     } else {
