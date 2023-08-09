@@ -35,10 +35,13 @@ pub fn authenticate(stream: &mut TcpStream) -> Result<u32, ()> {
 
         // Construct the response message with AUTHENTICATED and private code
         let response = format!("[AUTHENTICATED, {}]", private_code);
-        stream.write_all(response.as_bytes()).unwrap();
+        println!("Sending response:{} ", response);
+        stream.write_all(response.as_bytes()).expect("Failed to write response");
+        stream.flush().unwrap();
+        println!("Send response");
 
         // Authenticate the admin and return an admin ID
-        Ok(1)  // Change this to an actual admin ID
+        Ok(private_code)  // Change this to an actual admin ID
     } else {
         // Key mismatch
         Err(())

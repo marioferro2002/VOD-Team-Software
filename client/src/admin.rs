@@ -1,10 +1,8 @@
-use std::io::{self, BufRead, Write};
+use std::io::{self, Write, Read};
 use std::net::TcpStream;
-use std::time::Duration;
-use std::thread;
 
 pub(crate) fn main() -> io::Result<()> {
-    let mut stream = TcpStream::connect("127.0.0.1:12345")?;
+    let mut stream = TcpStream::connect("127.0.0.1:8081")?;
 
     println!("Enter the key:");
     let key = read_input()?;
@@ -13,27 +11,23 @@ pub(crate) fn main() -> io::Result<()> {
     stream.write_all(key.as_bytes())?;
 
     // Wait for server response
-    let mut reader = io::BufReader::new(&stream);
-    let mut response = String::new();
-    reader.read_line(&mut response)?;
+    let mut buffer = [0u8; 1024];
+    let bytes_read = stream.read(&mut buffer).expect("Failed to read from stream");
+    let received_data = String::from_utf8_lossy(&buffer[..bytes_read]);
 
-    // Check for AUTHENTICATED or error response
-    if response.contains("AUTHENTICATED") {
-        let private_code = extract_private_code(&response);
-        if let Some(private_code) = private_code {
+    println!("Received: {}", received_data);
+
+    // Check for "AUTHENTICATED" message and print the private code
+    if received_data.contains("AUTHENTICATED") {
+        if let Some(private_code) = extract_private_code(&received_data) {
             println!("Received private code: {}", private_code);
-        } else {
-            println!("Invalid private code format.");
         }
-
-        // Wait for 3 seconds
-        thread::sleep(Duration::from_secs(3));
-    } else if response.contains("error") {
-        println!("Authentication failed.");
     } else {
-        println!("Unexpected response: {}", response);
+        println!("Authentication failed or unexpected response.");
     }
+    loop {
 
+    }
     Ok(())
 }
 
@@ -43,16 +37,16 @@ fn read_input() -> io::Result<String> {
     Ok(input.trim().to_string())
 }
 
-fn extract_private_code(response: &str) -> Option<u32> {
-    let prefix = "private_code:";
+fn extract_private_code(response: &str) -> Option<&str> {
+    let prefix = "AUTHENTICATED, ";
     if let Some(start) = response.find(prefix) {
         let code_start = start + prefix.len();
-        if let Some(end) = response[code_start..].find(' ') {
-            if let Ok(private_code) = response[code_start..code_start + end].parse::<u32>() {
-                return Some(private_code);
-            }
+        if let Some(end) = response[code_start..].find(']') {
+            Some(&response[code_start..code_start + end])
+        } else {
+            None
         }
+    } else {
+        None
     }
-
-    None
 }
