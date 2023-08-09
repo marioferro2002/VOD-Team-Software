@@ -1,35 +1,52 @@
 mod admin_auth;
 
+use std::fs::File;
+use std::io::{Read, Write};
 use std::net::{TcpListener, TcpStream};
 use std::thread;
-use std::io::{Read, Write};
+
+fn handle_authenticated_client(mut stream: TcpStream, admin_id: u32) {
+    // Logic to handle ongoing communication with authenticated client
+    // You can implement your order distribution or other business logic here
+
+    // Example: Continuously read messages from the client and send responses
+    let mut buffer = [0u8; 1024];
+    loop {
+        match stream.read(&mut buffer) {
+            // ... (rest of the code remains the same)
+            Ok(_) => {}
+            Err(_) => {}
+        }
+    }
+
+    // Clean up: close the stream
+    stream.shutdown(std::net::Shutdown::Both).unwrap();
+}
 
 fn handle_client(mut stream: TcpStream) {
-    let mut buffer = [0u8; 1024];
-
     let auth_result = admin_auth::authenticate(&mut stream);
     match auth_result {
         Ok(admin_id) => {
             println!("Admin {} authenticated", admin_id);
-
-            // Implement order distribution or other logic here
-
-            // Example: Send a welcome message to the admin
-            let welcome_message = "Welcome, Admin!";
-            stream.write_all(welcome_message.as_bytes()).unwrap();
+            handle_authenticated_client(stream, admin_id);
         }
         Err(_) => {
             println!("Authentication failed for admin");
             // Handle authentication failure
         }
     }
-
-    stream.shutdown(std::net::Shutdown::Both).unwrap();
 }
 
 fn main() {
-    let listener = TcpListener::bind("127.0.0.1:12345").expect("Failed to bind");
-    println!("Server listening on 127.0.0.1:12345");
+    // Create the private_codes.txt file if it doesn't exist
+    let private_codes_file = "private_codes.txt";
+    if let Err(e) = File::open(private_codes_file) {
+        let mut file = File::create(private_codes_file).expect("Failed to create private_codes.txt");
+        writeln!(file, "List of private codes received by admins:").expect("Failed to write to file");
+    }
+
+    let listener = TcpListener::bind("127.0.0.1:8081").expect("Failed to bind");
+    println!("Server listening on 127.0.0.1:8081");
 
     for stream in listener.incoming() {
         match stream {
