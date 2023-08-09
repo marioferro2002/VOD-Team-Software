@@ -1,0 +1,1 @@
+C:\Users\MarioFernández\IdeaProjects\VOD-Team-Software\client\target\debug\client.exe: C:\Users\MarioFernández\IdeaProjects\VOD-Team-Software\client\src\admin.rs C:\Users\MarioFernández\IdeaProjects\VOD-Team-Software\client\src\main.rs
